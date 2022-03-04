@@ -1,0 +1,30 @@
+.error-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background-color: var(--background-color);
+}
+.error-container > * {
+  padding: 1rem 0;
+}
+
+.error-container > h1 {
+  font-weight: 400;
+  font-size: 5rem;
+  color: var(--black-text, #000);
+  letter-spacing: 2px;
+}
+
+.error-container > h5 {
+  font-weight: 300;
+  font-size: 2rem;
+  color: var(--black-text, #000);
+}
+.error-container > p {
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--grey-text);
+}

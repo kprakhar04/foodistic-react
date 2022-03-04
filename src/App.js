@@ -1,7 +1,17 @@
-import "./App.css";
+// component
+import Header from "./components/header";
+import SubHeader from "./components/subHeader";
+
+//css
+import "./app.css";
 
 function App() {
-  return <div>Hello World!</div>;
+  return (
+    <>
+      <Header />
+      <SubHeader />
+    </>
+  );
 }
 
 export default App;

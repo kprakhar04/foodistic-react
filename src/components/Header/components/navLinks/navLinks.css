@@ -1,0 +1,8 @@
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li a:hover {
+  filter: invert(60%) sepia(83%) saturate(895%) hue-rotate(329deg)
+    brightness(103%) contrast(104%);
+}

@@ -1,0 +1,21 @@
+.address {
+  flex-grow: 0.5;
+}
+.address span {
+  margin: 0 0.35rem;
+}
+.address .area::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  display: block;
+  margin-top: 0.35rem;
+  background-color: var(--black-text);
+}
+.address .district {
+  color: var(--grey-text);
+}
+.address:hover .area {
+  filter: invert(60%) sepia(83%) saturate(895%) hue-rotate(329deg)
+    brightness(103%) contrast(104%);
+}
