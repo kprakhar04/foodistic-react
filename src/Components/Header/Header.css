@@ -1,0 +1,21 @@
+.header {
+  color: var(--black-text);
+  height: 80px;
+  justify-content: space-between;
+  background-color: var(--white-text);
+  box-shadow: 0 15px 25px -10px var(--box-shadow-point-25);
+}
+.icon img {
+  width: 20px;
+  height: 20px;
+}
+.header-sec-left {
+  height: inherit;
+  margin-left: 10%;
+  flex-basis: 30%;
+  column-gap: 2rem;
+}
+.header-sec-right {
+  width: 40%;
+  margin-right: 10%;
+}

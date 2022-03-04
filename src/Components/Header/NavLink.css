@@ -1,0 +1,8 @@
+.nav-links li a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+.nav-links li a .icon {
+  margin-right: 0.7rem;
+}
