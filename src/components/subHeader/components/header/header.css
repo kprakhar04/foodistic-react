@@ -1,0 +1,27 @@
+.restaurant-about {
+  flex-grow: 1;
+  padding: 0 4rem;
+}
+
+.restaurant-about > * {
+  word-spacing: 0.1rem;
+  margin: 0.35rem;
+}
+.restaurant-about > h3 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+.restaurant-about p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+.restaurant-about p span:first-child {
+  background-color: var(--blue-bg);
+  padding: 2px;
+}
+
+.restaurant-about > div {
+  margin-bottom: 0;
+  column-gap: 2.5rem;
+}

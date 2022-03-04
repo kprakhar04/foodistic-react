@@ -1,0 +1,30 @@
+.offers {
+  margin-left: 0;
+  margin-right: 5rem;
+  padding: 0.7rem;
+  border: 1px solid var(--grey-text);
+  border-top: none;
+  max-width: 400px;
+  position: relative;
+}
+.offers div:first-child {
+  width: 100%;
+  position: absolute;
+  top: -1.7rem;
+  left: 0.35rem;
+  text-transform: uppercase;
+}
+.offers div:first-child::after {
+  content: "";
+  width: 83.5%;
+  height: 1px;
+  display: inline;
+  margin: 0.35rem 0;
+  background-color: var(--grey-text);
+  position: absolute;
+  top: 25%;
+  left: 15%;
+}
+.offers > div:not(:last-child) {
+  margin: 1rem 0;
+}
