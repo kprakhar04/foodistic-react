@@ -1,0 +1,12 @@
+.icon-with-label {
+  min-width: 7rem;
+  --primary-color: #ff8c42;
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.icon-with-label img {
+  width: 1.25rem;
+  height: 1.25rem;
+  /* margin-left: 1rem;*/
+}

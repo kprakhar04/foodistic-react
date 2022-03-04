@@ -1,0 +1,22 @@
+.search {
+  position: relative;
+  min-width: 200px;
+  --primary-color: #ff8c42;
+}
+.search img {
+  position: absolute;
+  top: 30%;
+}
+.search-input {
+  border: none;
+  background: transparent;
+  margin-left: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: inherit;
+  border: 1px solid transparent;
+}
+.search-input:focus {
+  outline: none;
+  caret-color: var(--primary-color);
+}

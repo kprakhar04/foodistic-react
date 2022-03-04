@@ -1,0 +1,4 @@
+a#active-link {
+  color: var(--primary-color);
+  font-weight: bold;
+}

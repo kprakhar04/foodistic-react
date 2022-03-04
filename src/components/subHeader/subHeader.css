@@ -1,0 +1,18 @@
+.restaurant {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: var(--restaurant-section-height);
+  background-color: var(--black-bg);
+  color: var(--white-text);
+}
+.restaurant-info {
+  height: 100%;
+  margin-left: 10%;
+}
+
+.thumbnail {
+  width: 300px;
+  height: 190px;
+}

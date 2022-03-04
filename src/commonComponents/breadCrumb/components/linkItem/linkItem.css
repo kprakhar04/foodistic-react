@@ -1,0 +1,13 @@
+.bread-crumb span {
+  color: var(--black-text);
+  opacity: 0.6;
+}
+.bread-crumb span a {
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.4;
+}
+.bread-crumb span a::after {
+  content: "/";
+  margin: 0 0.35rem;
+}

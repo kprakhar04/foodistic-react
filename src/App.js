@@ -1,7 +1,17 @@
-import "./App.css";
+// components
+import Header from "./components/header";
+import RestaurantWrapper from "./components/restaurantWrapper";
+
+//css
+import "./app.css";
 
 function App() {
-  return <div>Hello World!</div>;
+  return (
+    <>
+      <Header />
+      <RestaurantWrapper />
+    </>
+  );
 }
 
 export default App;
