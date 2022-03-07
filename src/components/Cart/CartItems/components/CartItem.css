@@ -1,0 +1,14 @@
+.cart-item > div {
+  flex-basis: 50%;
+}
+.cart-item > div:first-child > h6 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 0.7rem;
+}
+
+.cart-item p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  opacity: 0.8;
+}

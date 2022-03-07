@@ -1,0 +1,28 @@
+.dish {
+  font-size: 1rem;
+  margin-top: 0;
+  min-height: 100vh;
+  position: relative;
+  font-weight: 400;
+}
+.dish > div:first-child {
+  width: 60%;
+}
+.dish > div:last-child {
+  width: 30%;
+}
+.dish-items {
+  column-gap: 1rem;
+}
+.dish-items > div:first-child {
+  width: 25%;
+}
+.dish-items > div:last-child {
+  width: 35%;
+}
+.dish-cart {
+  align-self: flex-start;
+  position: sticky;
+  top: calc(var(--dish-top-padding) + var(--restaurant-section-height, 250px));
+  padding-top: var(--dish-top-padding);
+}

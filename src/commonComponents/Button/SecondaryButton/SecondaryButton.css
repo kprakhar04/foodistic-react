@@ -1,0 +1,17 @@
+.checkout-btn {
+  width: 400px;
+}
+.checkout-btn > button {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  letter-spacing: 0.1rem;
+  background-color: var(--primary-color);
+  color: var(--white-text);
+  border: 1px solid var(--primary-color);
+  opacity: 0.9;
+  transition: opacity 200ms ease-in;
+}
+.checkout-btn > button:hover {
+  opacity: 1;
+  box-shadow: var(--button-hover-box-shadow);
+}

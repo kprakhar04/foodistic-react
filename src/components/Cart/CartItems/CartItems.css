@@ -1,0 +1,7 @@
+.cart-items {
+  width: 400px;
+  row-gap: 1.2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: var(--grey-shade-border);
+}

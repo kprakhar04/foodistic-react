@@ -1,7 +1,8 @@
 import "./App.css";
+import DishItems from "./components/DishItems";
 
 function App() {
-  return <div>Hello World!</div>;
+  return <DishItems />;
 }
 
 export default App;

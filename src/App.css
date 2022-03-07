@@ -1,0 +1,86 @@
+:root {
+  --primary-color: #ff8c42;
+  --blue-bg: #4e598c;
+  --black-text: #04030f;
+  --black-bg: #272324;
+  --grey-text: #686b78;
+  --white-text: #fffbff;
+  --dish-top-padding: 2rem;
+  --dish-item-button-padding-top-bottom: 7px;
+  --dish-item-button-padding-left-right: 8px;
+  --box-shadow-point-25: rgba(0, 0, 0, 0.25);
+  --button-hover-box-shadow: 0 2px 8px 4px rgba(0, 0, 0, 0.25);
+  --grey-shade-border: 0.5px solid var(--grey-text);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  box-sizing: inherit;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.sub-title {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--grey-text);
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+}
+.content {
+  position: relative;
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.align-items-center {
+  align-items: center;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-space-between {
+  justify-content: space-between;
+}
+.justify-content-space-around {
+  justify-content: space-around;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.hide {
+  display: none;
+}
+
+.btn {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: var(--blue-bg);
+  text-transform: uppercase;
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  border: 1px solid var(--blue-bg);
+  border-radius: 5px;
+  padding: var(--dish-item-button-padding-top-bottom)
+    var(--dish-item-button-padding-left-right);
+}

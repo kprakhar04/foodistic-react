@@ -1,0 +1,39 @@
+.sidebar-nav-links {
+  min-height: 100vh;
+  align-self: flex-start;
+  margin-left: 10%;
+  position: sticky;
+  top: calc(
+    var(--dish-top-padding) + var(--restaurant-section-height, 15.625rem)
+  );
+  border-right: 0.8px solid var(--grey-text);
+  padding-top: var(--dish-top-padding);
+}
+.sidebar-nav-links::after {
+  content: "";
+  width: 4px;
+  height: 18px;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: var(--dish-top-padding);
+  right: -1px;
+  padding: 0;
+}
+
+.sidebar-nav-links a {
+  display: block;
+  text-decoration: none;
+  max-width: 200px;
+  color: var(--grey-text);
+  text-align: right;
+  margin-bottom: 0.7rem;
+  font-size: 1.2rem;
+  font-weight: inherit;
+  word-wrap: break-word;
+  padding-right: 1rem;
+}
+.sidebar-nav-links a:hover,
+.sidebar-nav-links a:active {
+  color: var(--primary-color);
+  font-weight: 700;
+}

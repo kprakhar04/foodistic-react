@@ -1,0 +1,20 @@
+.cart-empty {
+  row-gap: 2.5rem;
+}
+.cart-empty h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--grey-text);
+}
+.cart-empty img {
+  height: 212px;
+  width: 70%;
+  margin-bottom: 20px;
+}
+.cart-empty p {
+  opacity: 0.9;
+  color: var(--grey-text);
+  word-spacing: 2px;
+  line-height: 1.2em;
+  max-width: 218px;
+}
