@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 //lodash
 import _noop from "lodash/noop";
 
+// icons
+import ratingIcon from "../../../../assets/icons/star.svg";
+
 // css
 import "./header.css";
 
@@ -21,7 +24,9 @@ const Header = (props) => {
       <p>
         {street}, {locality}
       </p>
-      <div className="flex align-items-center">{renderAdditionalInfo()}</div>
+      <div className="flex align-items-center">
+        {renderAdditionalInfo(ratingIcon)}
+      </div>
     </div>
   );
 };

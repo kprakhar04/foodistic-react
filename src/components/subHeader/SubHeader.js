@@ -1,10 +1,11 @@
-import React from "react";
+// react
+import React, { useCallback, useMemo } from "react";
 
-// subheader general
-import {
-  DEFAULT_RESTAURANT_ID,
-  INITIAL_STATE,
-} from "./constants/subHeader.general";
+// prop-types
+import PropTypes from "prop-types";
+
+// constants
+import { DEFAULT_RESTAURANT_DETAILS } from "./constants/subHeader.general";
 
 //helpers
 import breadCrumbConfig from "./helpers/subHeader.breadCrumbConfig";
@@ -12,121 +13,101 @@ import breadCrumbConfig from "./helpers/subHeader.breadCrumbConfig";
 //constants
 import restaurantReader from "./readers/restaurantReader";
 
-// api methods
-import { getRestaurantDetails } from "../../apis/getRestaurantDetails";
-
 // components
-import Spinner from "../../commonComponents/loader/spinner";
-import ErrorHandler from "../../commonComponents/errorHandler";
 import BreadCrumb from "../../commonComponents/breadCrumb";
 import Header from "./components/header";
 import Placeholder from "./components/placeholder";
 import MenuFilter from "./components/menuFilter";
 import Offers from "./components/offers";
 
-// icon
-import ratingIcon from "../../assets/icons/star.svg";
-
 // css
 import "./subHeader.css";
-import { defaultMemoize } from "reselect";
 
-class SubHeader extends React.Component {
-  state = INITIAL_STATE;
-  getBreadCrumbConfig = defaultMemoize(breadCrumbConfig);
+const SubHeader = (props) => {
+  const { restaurantDetails } = props;
 
-  componentDidMount() {
-    this.fetchRestaurantDetails();
-  }
+  const thumbnail = restaurantReader.thumbnail(restaurantDetails);
+  const name = restaurantReader.name(restaurantDetails);
+  const category = restaurantReader.category(restaurantDetails);
+  const street = restaurantReader.street(restaurantDetails);
+  const locality = restaurantReader.locality(restaurantDetails);
+  const city = restaurantReader.city(restaurantDetails);
+  const offers = restaurantReader.offers(restaurantDetails);
+  const ratingCount = restaurantReader.ratingCount(restaurantDetails);
+  const ratingValue = restaurantReader.ratingValue(restaurantDetails);
+  const deliveryTime = restaurantReader.deliveryTime(restaurantDetails);
+  const cost = restaurantReader.cost(restaurantDetails);
+  const count = restaurantReader.count(restaurantDetails);
 
-  fetchRestaurantDetails() {
-    getRestaurantDetails(DEFAULT_RESTAURANT_ID)
-      .then(this.setRestaurantDetails)
-      .catch(this.handleRestaurantDetailsError)
-      .finally(this.setAsLoaded);
-  }
+  const renderPlaceholder = useCallback(
+    (icon) => {
+      return (
+        <>
+          <Placeholder
+            icon={icon}
+            title={ratingValue.toFixed(1)}
+            subtitle={`${ratingCount}+ ratings`}
+          />
+          <Placeholder
+            title={`${deliveryTime} mins`}
+            subtitle="Delivery Time"
+          />
+          <Placeholder title={cost} subtitle={`Cost for ${count}`} />
+        </>
+      );
+    },
+    [ratingValue, ratingCount, deliveryTime, cost, count]
+  );
 
-  setRestaurantDetails = (restaurantDetails) => {
-    this.setState({
-      restaurantDetails: restaurantDetails,
-    });
-  };
+  const crumbs = useMemo(() => {
+    return breadCrumbConfig(city, locality, name);
+  }, [city, locality, name]);
 
-  handleRestaurantDetailsError = () => {
-    this.setState({
-      errors: {
-        statusCode: 500,
-      },
-    });
-  };
+  return (
+    <>
+      <BreadCrumb items={crumbs} />
+      <section className="restaurant">
+        <div className="restaurant-info flex justify-content-space-around align-items-center">
+          <img src={thumbnail} alt="thumbnail" className="thumbnail" />
+          <Header
+            name={name}
+            category={category}
+            street={street}
+            locality={locality}
+            renderAdditionalInfo={renderPlaceholder}
+          />
+          <Offers offers={offers} />
+        </div>
+        <MenuFilter />
+      </section>
+    </>
+  );
+};
 
-  setAsLoaded = () => {
-    this.setState({
-      isLoading: false,
-    });
-  };
+SubHeader.defaultProps = {
+  restaurantDetails: DEFAULT_RESTAURANT_DETAILS,
+};
 
-  renderPlaceholder = () => {
-    const { restaurantDetails } = this.state;
-    const ratingCount = restaurantReader.ratingCount(restaurantDetails);
-    const ratingValue = restaurantReader.ratingValue(restaurantDetails);
-    const deliveryTime = restaurantReader.deliveryTime(restaurantDetails);
-    const cost = restaurantReader.cost(restaurantDetails);
-    const count = restaurantReader.count(restaurantDetails);
-    return (
-      <>
-        <Placeholder
-          icon={ratingIcon}
-          title={ratingValue.toFixed(1)}
-          subtitle={`${ratingCount}+ ratings`}
-        />
-        <Placeholder title={`${deliveryTime} mins`} subtitle="Delivery Time" />
-        <Placeholder title={cost} subtitle={`Cost for ${count}`} />
-      </>
-    );
-  };
+SubHeader.propTypes = {
+  restaurantDetails: PropTypes.shape({
+    thumbnail: PropTypes.string,
+    name: PropTypes.string,
+    category: PropTypes.string,
+    street: PropTypes.string,
+    locality: PropTypes.string,
+    city: PropTypes.string,
+    offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        discount: PropTypes.string,
+        coupon: PropTypes.string,
+      })
+    ),
+    ratingCount: PropTypes.number,
+    ratingValue: PropTypes.number,
+    deliveryTime: PropTypes.number,
+    cost: PropTypes.number,
+    count: PropTypes.string,
+  }),
+};
 
-  render() {
-    const { isLoading, errors, restaurantDetails } = this.state;
-
-    if (isLoading) {
-      return <Spinner text="Loading..." />;
-    }
-
-    if (errors) {
-      const { message, statusCode } = errors;
-      return <ErrorHandler message={message} statusCode={statusCode} />;
-    }
-
-    const thumbnail = restaurantReader.thumbnail(restaurantDetails);
-    const name = restaurantReader.name(restaurantDetails);
-    const category = restaurantReader.category(restaurantDetails);
-    const street = restaurantReader.street(restaurantDetails);
-    const locality = restaurantReader.locality(restaurantDetails);
-    const city = restaurantReader.city(restaurantDetails);
-    const offers = restaurantReader.offers(restaurantDetails);
-
-    const crumbs = this.getBreadCrumbConfig(city, locality, name);
-
-    return (
-      <>
-        <BreadCrumb items={crumbs} />
-        <section className="restaurant">
-          <div className="restaurant-info flex justify-content-space-around align-items-center">
-            <img src={thumbnail} alt="thumbnail" className="thumbnail" />
-            <Header
-              name={name}
-              category={category}
-              street={street}
-              locality={locality}
-              renderAdditionalInfo={this.renderPlaceholder}
-            />
-            <Offers offers={offers} />
-          </div>
-          <MenuFilter />
-        </section>
-      </>
-    );
-  }
-}
 export default SubHeader;

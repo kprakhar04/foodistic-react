@@ -36,7 +36,7 @@ NavLinks.defaultProps = {
 
 NavLinks.propTypes = {
   className: PropTypes.string,
-  navItems: PropTypes.array(
+  navItems: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
       icon: PropTypes.string,

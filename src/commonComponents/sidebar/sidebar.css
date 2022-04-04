@@ -1,0 +1,34 @@
+.sidebar-nav-links {
+  min-height: 100vh;
+  text-align: right;
+  position: sticky;
+  align-self: flex-start;
+  top: var(--restaurant-section-height, 15.625rem);
+  border-right: 0.8px solid var(--grey-text);
+  padding-top: var(--dish-top-padding);
+}
+
+.sidebar-nav-links a {
+  display: block;
+  text-decoration: none;
+  margin-right: 1.25rem;
+  color: var(--grey-text);
+  margin-bottom: 0.7rem;
+  font-size: 1.2rem;
+  word-wrap: break-word;
+}
+.sidebar-nav-links a:hover,
+.sidebar-nav-links a:active {
+  color: var(--primary-color);
+}
+
+.sidebar-scroller {
+  width: 4px;
+  height: 1.25rem;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: var(--dish-top-padding);
+  right: -1px;
+  padding: 0;
+  transition: all 0.5s;
+}

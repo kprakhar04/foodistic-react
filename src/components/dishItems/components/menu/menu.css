@@ -1,0 +1,7 @@
+.menu-items {
+  padding-top: var(--dish-top-padding);
+  padding-left: 2rem;
+}
+.menu-items > div:not(:last-child) {
+  border-bottom: 1.5px solid var(--black-text);
+}
