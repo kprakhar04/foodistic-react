@@ -1,8 +1,10 @@
 // constants
 import { baseUrl } from "./baseUrl";
 
-const handleSuccess = (response) => response.json();
+const handleRestaurantDetailsSuccess = (response) => response.json();
 
 export const getRestaurantDetails = (id) => {
-  return fetch(`${baseUrl}/restaurants/${id}`).then(handleSuccess);
+  return fetch(`${baseUrl}/restaurants/${id}`).then(
+    handleRestaurantDetailsSuccess
+  );
 };

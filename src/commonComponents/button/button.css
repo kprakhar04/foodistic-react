@@ -1,0 +1,28 @@
+.btn {
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: inherit;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.45rem 0.5rem;
+}
+
+.primary {
+  background-color: var(--primary-color);
+}
+
+.primary:hover {
+  opacity: 0.8;
+}
+
+.secondary {
+  border: 1px solid var(--blue-bg, "purple");
+}
+.secondary:hover {
+  background-color: var(--blue-bg);
+  color: var(--white-text);
+  opacity: 0.9;
+  box-shadow: 0 2px 8px 4px var(--grey-shade-border);
+}

@@ -1,0 +1,40 @@
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.menu-item:not(:last-child) {
+  border-bottom: var(--grey-shade-border);
+}
+.menu-item > div:first-child * {
+  margin-top: 0.8rem;
+}
+.menu-item > div:last-child {
+  align-self: center;
+}
+
+.menu-item > div:first-child h3 {
+  font-weight: 500;
+  word-wrap: break-word;
+  font-size: 1.2rem;
+  color: inherit;
+}
+
+.menu-item > div:first-child p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  font-size: inherit;
+}
+
+.menu-item > div:first-child > div {
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  opacity: 0.9;
+  color: var(--grey-text);
+  max-width: 400px;
+  margin-bottom: 0.8rem;
+}
+
+.menu-item button {
+  width: 90px;
+}

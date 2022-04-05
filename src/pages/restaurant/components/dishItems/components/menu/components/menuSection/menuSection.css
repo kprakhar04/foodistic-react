@@ -1,0 +1,9 @@
+.menu-section {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  min-width: 220px;
+}
+
+.menu-section .sub-title {
+  padding: 0.5rem 0;
+}
