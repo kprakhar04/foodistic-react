@@ -25,7 +25,7 @@ ErrorHandler.defaultProps = {
 ErrorHandler.propTypes = {
   message: PropTypes.string,
   statusCode: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  className: "",
+  className: PropTypes.string,
 };
 
 export default ErrorHandler;

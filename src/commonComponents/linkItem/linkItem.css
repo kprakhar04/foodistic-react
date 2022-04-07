@@ -1,0 +1,9 @@
+.link-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link-item .active-link {
+  color: var(--primary-color);
+  font-weight: bold;
+}

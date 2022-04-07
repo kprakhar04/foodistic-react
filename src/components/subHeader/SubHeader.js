@@ -16,7 +16,7 @@ import restaurantReader from "./readers/restaurantReader";
 import { getRestaurantDetails } from "../../apis/getRestaurantDetails";
 
 // components
-import Spinner from "../../commonComponents/loader/spinner";
+import Spinner from "../../commonComponents/spinner";
 import ErrorHandler from "../../commonComponents/errorHandler";
 import BreadCrumb from "../../commonComponents/breadCrumb";
 import Header from "./components/header";

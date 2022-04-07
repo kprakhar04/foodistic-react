@@ -4,13 +4,25 @@ import PropTypes from "prop-types";
 // lodash
 import _map from "lodash/map";
 import _uniqueId from "lodash/uniqueId";
+import _startCase from "lodash/startCase";
 
 // components
-import LinkItem from "../linkItem";
+import LinkItem from "../../../linkItem";
+
+// css
+import "./linkItemList.css";
 
 const renderLinkItem = (item) => {
-  const { name } = item;
-  return <LinkItem key={_uniqueId(name)} item={item} />;
+  const { text, isUrl, path } = item;
+  return (
+    <LinkItem
+      key={_uniqueId(text)}
+      href={path}
+      isUrl={isUrl}
+      label={_startCase(text)}
+      className="bread-crumb-link"
+    />
+  );
 };
 
 const LinkItemList = (props) => {
