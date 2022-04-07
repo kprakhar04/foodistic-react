@@ -28,7 +28,7 @@ class Restaurant extends React.Component {
   }
 
   fetchRestaurantPageMetaData() {
-    Promise.allSettled([
+    Promise.all([
       getRestaurantDetails(DEFAULT_RESTAURANT_ID),
       getDishItems(DEFAULT_RESTAURANT_ID),
     ])
@@ -37,9 +37,8 @@ class Restaurant extends React.Component {
       .finally(this.setAsLoaded);
   }
 
-  handleRestaurntSuccess = ([restaurantDetailsRes, dishItemsRes]) => {
-    const restaurantDetails = restaurantDetailsRes?.value;
-    const dishes = dishItemsRes?.value?.dishes;
+  handleRestaurntSuccess = ([restaurantDetails, dishItems]) => {
+    const dishes = dishItems?.dishes;
 
     this.setState({
       restaurantDetails,
@@ -59,32 +58,43 @@ class Restaurant extends React.Component {
     });
   };
 
+  renderSubHeader() {
+    const { restaurantDetails } = this.state;
+
+    return _isEmpty(restaurantDetails) ? (
+      <h1 className="empty-block">Sorry, No Info Available</h1>
+    ) : (
+      <SubHeader restaurantDetails={restaurantDetails} />
+    );
+  }
+
+  renderDishItems() {
+    const { dishItems } = this.state;
+
+    return _isEmpty(dishItems) ? (
+      <h1 className="empty-block">
+        Sorry, No Food Items Available Now, Check it After Sometime!!
+      </h1>
+    ) : (
+      <DishItems dishItems={dishItems} />
+    );
+  }
+
   render() {
-    const { isLoading, hasError, restaurantDetails, dishItems } = this.state;
+    const { isLoading, hasError } = this.state;
 
     if (isLoading) {
       return <Spinner text="Loading..." />;
     }
 
-    if (!restaurantDetails || hasError) {
+    if (hasError) {
       return <ErrorHandler />;
     }
 
     return (
       <>
-        {_isEmpty(restaurantDetails) ? (
-          <h1 className="empty-block">Sorry, No Info Available</h1>
-        ) : (
-          <SubHeader restaurantDetails={restaurantDetails} />
-        )}
-
-        {_isEmpty(dishItems) ? (
-          <h1 className="empty-block">
-            Sorry, No Food Items Available Now, Check it After Sometime!!
-          </h1>
-        ) : (
-          <DishItems dishItems={dishItems} />
-        )}
+        {this.renderSubHeader()}
+        {this.renderDishItems()}
       </>
     );
   }

@@ -4,6 +4,8 @@ import _lowerCase from "lodash/lowerCase";
 // helpers
 import { sanitizeText } from "../../../utility/sanitizeText";
 
+const SCROLL_FACTOR = 2.1875;
+
 export const getMatchedIndexWithUrlHash = (links) => {
   const {
     location: { hash },
@@ -22,3 +24,9 @@ export const getMatchedIndexWithUrlHash = (links) => {
 
 export const isEqualWith = (value) => (other) =>
   _lowerCase(value) === _lowerCase(other);
+
+export const scrollStyle = (idx) => {
+  return {
+    transform: `translateY(${idx * SCROLL_FACTOR}rem)`,
+  };
+};

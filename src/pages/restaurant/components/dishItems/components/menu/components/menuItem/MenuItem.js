@@ -8,8 +8,8 @@ import menuItemReader from "./readers/MenuItemReader";
 import Button, { TYPES } from "../../../../../../../../commonComponents/button";
 
 // helpers
-import { getFormattedCurrency } from "./helpers/getFormmatedCurrency";
-import { getDishIcon } from "./helpers/getDishIcon";
+import { getDishIcon } from "../../../../../../../../utility/getDishIcon";
+import { getFormattedCurrency } from "../../../../../../../../utility/moneyUtil";
 
 // css
 import "./menuItem.css";
@@ -23,12 +23,15 @@ const MenuItem = function (props) {
   const price = menuItemReader.price(item);
   const description = menuItemReader.description(item);
 
+  const icon = getDishIcon(type);
+  const formmatedCurrency = getFormattedCurrency(price, currency);
+
   return (
     <div className="menu-item">
       <div>
-        <img src={getDishIcon(type)} alt={type} className="icon" />
+        <img src={icon} alt={type} className="icon" />
         <h3>{name}</h3>
-        <p>{getFormattedCurrency(price, currency)}</p>
+        <p>{formmatedCurrency}</p>
         <div>{description}</div>
       </div>
       <div>

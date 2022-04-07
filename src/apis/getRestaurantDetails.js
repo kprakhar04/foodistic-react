@@ -1,10 +1,10 @@
 // constants
-import { baseUrl } from "./baseUrl";
+import { BASE_URL } from "./baseURL";
 
 const handleRestaurantDetailsSuccess = (response) => response.json();
 
 export const getRestaurantDetails = (id) => {
-  return fetch(`${baseUrl}/restaurants/${id}`).then(
+  return fetch(`${BASE_URL}/restaurants/${id}`).then(
     handleRestaurantDetailsSuccess
   );
 };

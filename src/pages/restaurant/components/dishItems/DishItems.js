@@ -1,11 +1,10 @@
 // react
-import React from "react";
+import React, { useMemo } from "react";
 
 //prop-types
 import PropTypes from "prop-types";
 
 //lodash
-import _isEmpty from "lodash/isEmpty";
 import _keys from "lodash/keys";
 
 // components
@@ -18,15 +17,9 @@ import "./dishItems.css";
 const DishItems = (props) => {
   const { dishItems } = props;
 
-  if (_isEmpty(dishItems)) {
-    return (
-      <h1 className="empty-block">
-        Sorry, No Food Items Available Now, Check it After Sometime!!
-      </h1>
-    );
-  }
-
-  const sidebarLinks = _keys(dishItems);
+  const sidebarLinks = useMemo(() => {
+    return _keys(dishItems);
+  }, [dishItems]);
 
   return (
     <main className="dish">

@@ -3,11 +3,11 @@ import _lowerCase from "lodash/lowerCase";
 import _startsWith from "lodash/startsWith";
 
 // compose
-import { compose } from "../../../../../../../../../utility/compose";
+import { compose } from "./compose";
 
 // icons
-import veg from "../../../../../../../../../assets/icons/veg.svg";
-import nonVeg from "../../../../../../../../../assets/icons/non-veg.svg";
+import veg from "../assets/icons/veg.svg";
+import nonVeg from "../assets/icons/non-veg.svg";
 
 const isMatchWith = compose(_startsWith, _lowerCase);
 
