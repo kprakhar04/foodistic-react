@@ -1,8 +1,8 @@
 // constants
-import { baseUrl } from "./baseUrl";
+import { BASE_URL } from "./baseURL";
 
 const handleDishItemsSuccess = (response) => response.json();
 
 export const getDishItems = (id) => {
-  return fetch(`${baseUrl}/dishes/${id}`).then(handleDishItemsSuccess);
+  return fetch(`${BASE_URL}/dishes/${id}`).then(handleDishItemsSuccess);
 };

@@ -1,6 +1,6 @@
 export const compose =
   (...fns) =>
-  (...args) =>
-    fns.reduceRight((args, f) => {
-      return f(args);
-    }, ...args);
+  (arg, ...restArgs) =>
+    fns.reduceRight((x, f) => {
+      return f(x, ...restArgs);
+    }, arg);

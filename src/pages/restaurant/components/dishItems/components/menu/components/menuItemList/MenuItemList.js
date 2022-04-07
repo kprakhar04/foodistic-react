@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 //lodash
 import _map from "lodash/map";
+import _uniqueId from "lodash/uniqueId";
 
 // components
 import MenuItem from "../menuItem";
@@ -11,7 +12,7 @@ import MenuItem from "../menuItem";
 import "./menuItemList.css";
 
 const renderMenuItem = (item) => {
-  const { id } = item;
+  const { id = _uniqueId() } = item;
   return <MenuItem key={id} item={item} />;
 };
 

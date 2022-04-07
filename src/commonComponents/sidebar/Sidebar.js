@@ -9,14 +9,12 @@ import _map from "lodash/map";
 import _startCase from "lodash/startCase";
 import _findIndex from "lodash/findIndex";
 
-// constants
-import { INITIAL_INDEX, SCROLL_FACTOR } from "./constants/sidebar.general";
-
 //helpers
 import { sanitizeText } from "../../utility/sanitizeText";
 import {
   getMatchedIndexWithUrlHash,
   isEqualWith,
+  scrollStyle,
 } from "./helpers/sidebar.general";
 
 // components
@@ -28,7 +26,7 @@ import "./sidebar.css";
 const Sidebar = (props) => {
   const { links, className } = props;
 
-  const [activeIdx, setActiveIdx] = useState(INITIAL_INDEX);
+  const [activeIdx, setActiveIdx] = useState(null);
 
   useEffect(() => {
     const index = getMatchedIndexWithUrlHash(links);
@@ -58,16 +56,10 @@ const Sidebar = (props) => {
     );
   };
 
-  const scrollStyle = () => {
-    return {
-      transform: `translateY(${activeIdx * SCROLL_FACTOR}rem)`,
-    };
-  };
-
   return (
     <div className={`sidebar-nav-links ${className}`}>
       {_map(links, renderLink)}
-      <div className="sidebar-scroller" style={scrollStyle()}></div>
+      <div className="sidebar-scroller" style={scrollStyle(activeIdx)}></div>
     </div>
   );
 };

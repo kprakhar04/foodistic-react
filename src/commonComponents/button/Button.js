@@ -13,7 +13,7 @@ export const TYPES = {
 };
 
 const Button = (props) => {
-  const { type = TYPES.PRIMARY, label, className, ...extra } = props;
+  const { type = TYPES.PRIMARY, label, className, ...rest } = props;
 
   const btnClass = cx({
     [TYPES.PRIMARY]: type === TYPES.PRIMARY,
@@ -21,7 +21,7 @@ const Button = (props) => {
   });
 
   return (
-    <button {...extra} className={`btn ${btnClass} ${className}`}>
+    <button {...rest} className={`btn ${btnClass} ${className}`}>
       {label}
     </button>
   );
