@@ -1,0 +1,11 @@
+.cart-items {
+  max-height: 20rem;
+  row-gap: 1.2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: var(--grey-shade-border);
+  overflow-y: auto;
+}
+.cart-items ::-webkit-scrollbar {
+  display: none;
+}
