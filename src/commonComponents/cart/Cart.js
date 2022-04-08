@@ -1,3 +1,6 @@
+// react
+import { useMemo } from "react";
+
 // prop-types
 import PropTypes from "prop-types";
 
@@ -25,7 +28,6 @@ import cartEmpty from "../../assets/images/cart_empty.png";
 
 // css
 import "./cart.css";
-import { useMemo } from "react";
 
 const Cart = (props) => {
   const {
@@ -37,8 +39,6 @@ const Cart = (props) => {
     onCheckout,
   } = props;
 
-  const subHeading = renderSubHeading(cartItems);
-
   const cartWithProducts = useMemo(() => {
     return getCartWithProducts(products, cartItems);
   }, [products, cartItems]);
@@ -46,6 +46,8 @@ const Cart = (props) => {
   const totalAmount = getTotalAmountOfCart(cartWithProducts);
 
   const isCartEmpty = _isEmpty(cartItems);
+
+  const subHeading = renderSubHeading(cartItems);
 
   if (isCartEmpty) {
     return (

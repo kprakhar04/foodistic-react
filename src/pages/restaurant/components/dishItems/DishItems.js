@@ -4,14 +4,19 @@ import React, { useMemo } from "react";
 //prop-types
 import PropTypes from "prop-types";
 
+// react-router-dom
+import { useNavigate } from "react-router-dom";
+
 //lodash
 import _keys from "lodash/keys";
 
 // custom-hooks
 import { useCart } from "./customHooks/useCart";
 
-//helpers
+// helpers
 import { getTransformedDishItems } from "./helpers/dishItems.general";
+// constants
+import { CHECKOUT } from "../../../../constants/routes";
 
 // components
 import Sidebar from "../../../../commonComponents/sidebar";
@@ -20,15 +25,31 @@ import Cart from "../../../../commonComponents/cart";
 
 // css
 import "./dishItems.css";
+import { postCartItems } from "../../../../apis/postCartItems";
 
 const DishItems = ({ dishItems }) => {
+  const navigate = useNavigate();
+
+  const onPostCartItems = (cartItems) => {
+    postCartItems(cartItems)
+      .then(handlePostCartItemsSuccess)
+      .catch(handlePostCartItemsError);
+  };
+
   const [
     cartItems,
     onAddToCart,
     onQuantityIncrement,
     onQuantityDecrement,
     onCheckout,
-  ] = useCart([]);
+  ] = useCart([], onPostCartItems);
+
+  const handlePostCartItemsSuccess = () => {
+    navigate(CHECKOUT);
+  };
+  const handlePostCartItemsError = (err) => {
+    console.log(err);
+  };
 
   const sidebarLinks = useMemo(() => {
     return _keys(dishItems);

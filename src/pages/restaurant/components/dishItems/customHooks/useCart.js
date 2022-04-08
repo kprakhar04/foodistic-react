@@ -19,8 +19,9 @@ import {
   updateCartIfQuantityIsZero,
   updateCartItems,
 } from "../helpers/dishItems.general";
+// constants
 
-export const useCart = (initialState) => {
+export const useCart = (initialState, onClearCart) => {
   const [cartItems, setCartItems] = useState(initialState);
 
   const onAddToCart = (event) => {
@@ -75,7 +76,7 @@ export const useCart = (initialState) => {
   const onCheckout = () => {
     saveItemsToLocalStorage(CART, cartItems);
     setCartItems([]);
-    alert("Cart items has been saved successfully!!");
+    onClearCart(cartItems);
   };
 
   return [
