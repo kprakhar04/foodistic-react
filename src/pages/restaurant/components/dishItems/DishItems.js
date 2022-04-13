@@ -4,6 +4,9 @@ import React, { useMemo } from "react";
 //prop-types
 import PropTypes from "prop-types";
 
+// react-router-dom
+import { useNavigate } from "react-router-dom";
+
 //lodash
 import _keys from "lodash/keys";
 import _isEmpty from "lodash/isEmpty";
@@ -11,10 +14,9 @@ import _isEmpty from "lodash/isEmpty";
 // custom-hooks
 import { useCart } from "./customHooks/useCart";
 
-// helpers
-
 // constants
 import { EMPTY_CART_DESCRIPTION } from "./constants/dishItems.general";
+import { CHECKOUT } from "../../../../constants/routes";
 
 // components
 import Sidebar from "../../../../commonComponents/sidebar";
@@ -27,9 +29,25 @@ import cartEmpty from "../../../../assets/images/cart_empty.png";
 
 // css
 import "./dishItems.css";
+import { postCartItems } from "../../../../apis/postCartItems";
 
 const DishItems = ({ dishItems }) => {
-  const [cartItems, onCartChange, onCheckout] = useCart([]);
+  const navigate = useNavigate();
+
+  const onPostCartItems = (cartItems) => {
+    postCartItems(cartItems)
+      .then(handlePostCartItemsSuccess)
+      .catch(handlePostCartItemsError);
+  };
+
+  const [cartItems, onCartChange, onCheckout] = useCart([], onPostCartItems);
+
+  const handlePostCartItemsSuccess = () => {
+    navigate(CHECKOUT);
+  };
+  const handlePostCartItemsError = (err) => {
+    console.log(err);
+  };
 
   const renderCartItems = () => {
     const isCartEmpty = _isEmpty(cartItems);

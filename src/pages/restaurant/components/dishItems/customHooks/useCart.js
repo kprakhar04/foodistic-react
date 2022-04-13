@@ -11,7 +11,7 @@ import {
   updateAndFilterCart,
 } from "../helpers/dishItems.general";
 
-export const useCart = (initialState) => {
+export const useCart = (initialState, onClearCart) => {
   const [cartItems, setCartItems] = useState(initialState);
 
   const onCartChange = (id, newQuantity = 0) => {
@@ -30,7 +30,7 @@ export const useCart = (initialState) => {
   const onCheckout = () => {
     saveCartItems(CART, cartItems);
     setCartItems([]);
-    alert("Cart items has been saved successfully!!");
+    onClearCart(cartItems);
   };
 
   return [cartItems, onCartChange, onCheckout];
