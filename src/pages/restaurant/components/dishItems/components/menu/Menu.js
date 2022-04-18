@@ -1,6 +1,9 @@
 // prop-types
 import PropTypes from "prop-types";
 
+// redux
+import { connect } from "react-redux";
+
 // lodash
 import _map from "lodash/map";
 import _startCase from "lodash/startCase";
@@ -53,7 +56,7 @@ Menu.defaultProps = {
 };
 
 Menu.propTypes = {
-  items: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.object)),
+  items: PropTypes.object,
   className: PropTypes.string,
   cart: PropTypes.array,
   onAddToCart: PropTypes.func,
@@ -61,4 +64,11 @@ Menu.propTypes = {
   onQuantityDecrement: PropTypes.func,
 };
 
-export default Menu;
+const mapStateToProps = (state) => {
+  const { restaurant: { dishItems: { dishes } = {} } = {} } = state;
+  return {
+    items: dishes,
+  };
+};
+
+export default connect(mapStateToProps)(Menu);

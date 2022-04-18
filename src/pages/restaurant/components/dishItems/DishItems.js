@@ -4,6 +4,9 @@ import React, { useMemo } from "react";
 //prop-types
 import PropTypes from "prop-types";
 
+// redux
+import { connect } from "react-redux";
+
 // react-router-dom
 import { useNavigate } from "react-router-dom";
 
@@ -64,7 +67,6 @@ const DishItems = ({ dishItems }) => {
       <div className="dish-items flex">
         <Sidebar links={sidebarLinks} className="sidebar-links" />
         <Menu
-          items={dishItems}
           className="menu-items"
           cart={cartItems}
           onAddToCart={onAddToCart}
@@ -89,19 +91,15 @@ const DishItems = ({ dishItems }) => {
 DishItems.defaultProps = {
   dishItems: {},
 };
-
 DishItems.propTypes = {
-  dishItems: PropTypes.objectOf(
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string,
-        currency: PropTypes.string,
-        price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-        description: PropTypes.string,
-        type: PropTypes.string,
-      })
-    )
-  ),
+  dishItems: PropTypes.object,
 };
 
-export default DishItems;
+const mapStateToProps = (state) => {
+  const { restaurant: { dishItems: { dishes } = {} } = {} } = state;
+  return {
+    dishItems: dishes,
+  };
+};
+
+export default connect(mapStateToProps)(DishItems);

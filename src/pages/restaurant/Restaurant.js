@@ -4,9 +4,11 @@ import React from "react";
 // lodash
 import _isEmpty from "lodash/isEmpty";
 
-// api
-import { getDishItems } from "../../apis/getDishItems";
-import { getRestaurantDetails } from "../../apis/getRestaurantDetails";
+// redux
+import { connect } from "react-redux";
+
+// action-creator
+import { fetchRestaurant } from "./actions/restaurantActions";
 
 // constants
 import {
@@ -27,39 +29,30 @@ class Restaurant extends React.Component {
     this.fetchRestaurantPageMetaData();
   }
 
-  fetchRestaurantPageMetaData() {
-    Promise.all([
-      getRestaurantDetails(DEFAULT_RESTAURANT_ID),
-      getDishItems(DEFAULT_RESTAURANT_ID),
-    ])
-      .then(this.handleRestaurntSuccess)
-      .catch(this.handleFetchError)
-      .finally(this.setAsLoaded);
+  async fetchRestaurantPageMetaData() {
+    try {
+      await this.props.fetchRestaurant(DEFAULT_RESTAURANT_ID);
+    } catch (err) {
+      this.setError();
+    } finally {
+      this.setAsLoaded();
+    }
   }
 
-  handleRestaurntSuccess = ([restaurantDetails, dishItems]) => {
-    const dishes = dishItems?.dishes;
-
-    this.setState({
-      restaurantDetails,
-      dishItems: dishes,
-    });
-  };
-
-  handleFetchError = () => {
-    this.setState({
-      hasError: true,
-    });
-  };
-
-  setAsLoaded = () => {
+  setAsLoaded() {
     this.setState({
       isLoading: false,
     });
-  };
+  }
+
+  handleRestaurantPageMetaError() {
+    this.setState({
+      hasError: true,
+    });
+  }
 
   renderSubHeader() {
-    const { restaurantDetails } = this.state;
+    const { restaurant: { restaurantDetails } = {} } = this.props;
 
     return _isEmpty(restaurantDetails) ? (
       <h1 className="empty-block">Sorry, No Info Available</h1>
@@ -69,14 +62,14 @@ class Restaurant extends React.Component {
   }
 
   renderDishItems() {
-    const { dishItems } = this.state;
+    const { restaurant: { dishItems: { dishes } = {} } = {} } = this.props;
 
-    return _isEmpty(dishItems) ? (
+    return _isEmpty(dishes) ? (
       <h1 className="empty-block">
         Sorry, No Food Items Available Now, Check it After Sometime!!
       </h1>
     ) : (
-      <DishItems dishItems={dishItems} />
+      <DishItems />
     );
   }
 
@@ -100,4 +93,13 @@ class Restaurant extends React.Component {
   }
 }
 
-export default Restaurant;
+const mapStateToProps = (state) => {
+  const { restaurant } = state;
+  return {
+    restaurant,
+  };
+};
+
+export default connect(mapStateToProps, {
+  fetchRestaurant,
+})(Restaurant);
